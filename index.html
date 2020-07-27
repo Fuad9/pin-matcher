@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input id="display" class="form-control" type="text">
+                    <input id="displayNum" class="form-control" type="text">
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
@@ -44,31 +44,28 @@
                                 <div class="button" onclick="clean(false)">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn" onclick="message()">Submit</button>
-                                <p class="action-left">3 try left</p>
+                                <button type="submit" id="Btn" class="submit-btn" onclick="message(true)">Submit</button>
+                                <p class="action-left"><span id="actionLeftCount">3</span> try left</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="notify-section">
-                <p id="deny" class="notify">❌ Pin Didn't Match, Please try again</p>
-                <p id="accept" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+                <p id="denied" class="notify">❌ Pin Didn't Match, Please try again</p>
+                <p id="accepted" class="notify">✅ Pin Matched... Secret door is opening for you</p>
             </div>
         </div>
 
 
 
         <script>
-            let displayNum = document.getElementById('display');
-            let displayPin = document.getElementById('displayPin');
-
             function insert(num) {
-                displayNum.value += num;
+                document.getElementById('displayNum').value += num;
             }
 
             function generate() {
-                displayPin.value = Math.floor(1000 + Math.random() * 9000);
+                document.getElementById('displayPin').value = Math.floor(1000 + Math.random() * 9000);
             }
 
             function clean(allClear) {
@@ -80,23 +77,23 @@
                 }
             }
 
-            function message() {
+            function message(tryAgain) {
                 if (displayNum.value == displayPin.value) {
-                    document.getElementById("accept").style.display = "block";
-                    document.getElementById("deny").style.display = "none";
+                    document.getElementById("accepted").style.display = "block";
+                    document.getElementById("denied").style.display = "none";
                 } else {
-                    document.getElementById("deny").style.display = "block";
-                    document.getElementById("accept").style.display = "none";
+                    denied.style.display = "block";
+                    accepted.style.display = "none";
+                    if (tryAgain == true && document.getElementById("actionLeftCount").innerText > 0) {
+                        actionLeftCount.innerText -= 1;
+                        if (actionLeftCount.innerText == 0) {
+                            document.getElementById("Btn").disabled = true;
+                            denied.style.display = "none";
+                        }
+                    }
                 }
             }
         </script>
-
-
-
-
-
-
-
 </body>
 
 </html>
