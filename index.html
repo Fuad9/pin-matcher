@@ -39,9 +39,9 @@
                                 <div class="button" onclick="insert(3)">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div class="button" onclick="clean(true)">AC</div>
+                                <div class="button" onclick="clean(false)"><</div>
                                 <div class="button" onclick="insert(0)">0</div>
-                                <div class="button" onclick="clean(false)">C</div>
+                                <div class="button" onclick="clean(true)">C</div>
                             </div>
                             <div>
                                 <button type="submit" id="Btn" class="submit-btn" onclick="message(true)">Submit</button>
@@ -84,11 +84,11 @@
                 } else {
                     denied.style.display = "block";
                     accepted.style.display = "none";
-                    if (tryAgain == true && document.getElementById("actionLeftCount").innerText > 0) {
-                        actionLeftCount.innerText -= 1;
+                    if (tryAgain == true) {
+                        document.getElementById("actionLeftCount").innerText -= 1;
                         if (actionLeftCount.innerText == 0) {
                             document.getElementById("Btn").disabled = true;
-                            denied.style.display = "none";
+                            denied.innerText = "❌ Pin Didn't Match, Please reload this page and try again";
                         }
                     }
                 }
