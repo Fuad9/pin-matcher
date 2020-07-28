@@ -45,6 +45,7 @@ input[type='text'] {
     height: 50px;
     padding: 10px;
     color: #10101B;
+    text-align: center;
 }
 
 input[type='text']:focus {
